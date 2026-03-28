@@ -27,9 +27,7 @@ FPS_LOG_PATH = "fps_log1.txt"        # <-- Path for the FPS log file
 DETECT_MODEL = "yolo11n.pt"
 
 MIDAS_MODEL_TYPE = "dpt_next_vit_large_384"
-MIDAS_OPTIMIZE = False
-MIDAS_HEIGHT = 384
-ASSUME_BOTTOM_CENTER_M = 2.0        # bottom-center pixel equals this many meters
+ASSUME_BOTTOM_CENTER_M = 3.7        # bottom-center pixel equals this many meters
 
 DANGER_OVERLAP_THRESH = 0.20        # rails overlap → red bbox
 
@@ -372,8 +370,12 @@ for av_frame in container.decode(stream):
     Hc, Wc = pred_raw.shape
     ref_val = pred_raw[Hc - 1, Wc // 2]
     eps = 1e-8
-    scale_k = ASSUME_BOTTOM_CENTER_M * max(ref_val, eps) 
-    depth_meters = scale_k / (pred_raw + eps)
+
+    # Force all raw disparities to be at least 'eps' to prevent negative/zero division
+    pred_raw_clipped = np.maximum(pred_raw, eps)
+
+    scale_k = ASSUME_BOTTOM_CENTER_M * pred_raw_clipped[Hc - 1, Wc // 2] 
+    depth_meters = scale_k / pred_raw_clipped
 
     # -------- Annotate detections with danger + depth --------
     for x1, y1, x2, y2 in boxes:
