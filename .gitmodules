@@ -1,0 +1,3 @@
+[submodule "midas/external/next_vit"]
+	path = midas/external/next_vit
+	url = https://github.com/isl-org/Next-ViT
