@@ -34,6 +34,12 @@ Please install the correct PyTorch version for your CUDA toolkit from the [offic
 pip install -r requirements.txt
 ```
 
+**4. Download / Organize Model Weights:**
+Download the required custom and pre-trained model weights from [this Google Drive folder](https://drive.google.com/drive/folders/1rOs5XnhpWDl0GfHPn7uczg-_EPgaIung?usp=sharing). 
+Once downloaded, create a `weights` folder in the root directory and place the files inside so your structure looks like this:
+* `weights/yolov8_rail_seg.pt` (Custom track segmentation model)
+* `weights/yolo11n.pt` (Standard obstacle detection model)
+
 ## ⚙️ Configuration
 Before running the code, open `Final_Code.py` and verify the `CONFIGURATIONS` block:
 * Update `VIDEO_PATH` to match your camera's RTSP stream IP and credentials.
@@ -52,6 +58,6 @@ python Final_Code.py
 * **[MiDaS](https://github.com/isl-org/MiDaS):** Special thanks to the ISL team for their incredibly robust monocular depth estimation models and source code, which allowed our system to maintain spatial awareness and depth perception using a single camera.
 
 ## 👨‍💻 Authors
-* **Pongpiched Rakshit**
-* **Supichaya Kritpidhayaburana**
+* **[Pongpiched Rakshit](https://github.com/job0403)**
+* **[Supichaya Kritpidhayaburana](https://github.com/how2codeomg)**
 * **Advisors:** Assoc. Prof. Somyot Kaitwanidvilai, Ms. Mathinee Songthai (KMITL)
