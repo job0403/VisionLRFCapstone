@@ -21,7 +21,7 @@ This project was developed as a Capstone Thesis in the Robotics and AI Engineeri
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/job0403/VisionLRFCapstone.git](https://github.com/job0403/VisionLRFCapstone.git)
+git clone https://github.com/job0403/VisionLRFCapstone.git
 cd VisionLRFCapstone
 ```
 
